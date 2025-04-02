@@ -8,10 +8,18 @@ class Controller:
         # the model, which implements the logic of the program and holds the data
         self._model = model
 
-    def handle_hello(self, e):
-        name = self._view.txt_name.value
-        if name is None or name == "":
-            self._view.create_alert("Inserire il nome")
-            return
-        self._view.txt_result.controls.append(ft.Text(f"Hello, {name}!"))
-        self._view.update_page()
+    def add_years(self):
+        for year in self._model.years():
+            ft.dropdown.Option(key=retailer.retailer_code,
+                                text=retailer.retailer_name,
+                                data=retailer,
+                                on_click=self.read_retailer)
+
+    def add_products(self):
+        for product in self._model.products():
+            self._view.dd_brand.options.append(ft.dropdown.Option(product))
+
+    def add_retailers(self):
+        for retailer in self._model.retailers():
+            self._view.dd_retailer.options.append(ft.dropdown.Option(retailer))
+
