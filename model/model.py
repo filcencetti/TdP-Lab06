@@ -17,5 +17,10 @@ class Model:
     def retailers():
         return DAO.getretailer()
 
-    def x(self):
-        return
+    @staticmethod
+    def top_5_sold(year,brand,retailer):
+        return DAO.top_5(year,brand,retailer)
+
+    @staticmethod
+    def analysis(year,brand,retailer):
+        return DAO.analysis(year,brand,retailer)

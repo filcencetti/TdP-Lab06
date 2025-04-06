@@ -18,6 +18,7 @@ class View(ft.UserControl):
         # title
         self._page.controls.append(ft.Text(self._page.title))
         #ROW with some controls
+        self.lvltxtout = ft.ListView(expand=True)
         self.dd_year = ft.Dropdown(label="anno",
                                    width=300,
                                    hint_text="Inserisci un anno")
@@ -34,13 +35,17 @@ class View(ft.UserControl):
         row1 = ft.Row([self.dd_year,self.dd_brand,self.dd_retailer],alignment=ft.MainAxisAlignment.CENTER)
 
         self.btn_top_sold = ft.ElevatedButton(text="Top vendite",
-                                              width=300)
+                                              width=300,
+                                              on_click = self._controller.show_top)
         self.btn_analysis_sold = ft.ElevatedButton(text="Analizza vendite",
-                                                   width=300)
+                                                   width=300,
+                                                   on_click= self._controller.analysis)
         row2 = ft.Row([self.btn_top_sold,self.btn_analysis_sold],alignment=ft.MainAxisAlignment.CENTER)
         self._page.add(row1)
         self._page.add(row2)
+        self._page.add(self.lvltxtout)
         self._page.update()
+
     @property
     def controller(self):
         return self._controller
